@@ -1,7 +1,7 @@
 require("dotenv").config();
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
-const { Pengurus } = require("../../model");
+const { Admin } = require("../../model");
 const Validator = require("fastest-validator");
 const v = new Validator();
 const { JWT_SECRET_KEY, JWT_TIME_EXPIRE } = process.env;
@@ -21,7 +21,7 @@ module.exports = async (req, res) => {
     });
   }
 
-  await Pengurus.findOne({
+  await Admin.findOne({
     where: { username },
   }).then((data) => {
     if (data === null) {
@@ -43,9 +43,7 @@ module.exports = async (req, res) => {
             {
               id: data.id,
               username: data.username,
-              role: data.role,
               nama: data.nama,
-              foto: data.foto,
             },
             JWT_SECRET_KEY,
             { expiresIn: JWT_TIME_EXPIRE },
@@ -58,11 +56,8 @@ module.exports = async (req, res) => {
               }
               return res.json({
                 status: true,
-                message: "Pengurus berhasil login",
+                message: "Admin berhasil login",
                 token,
-                role: data.role,
-                nama: data.nama,
-                foto: `${req.protocol}://${req.get("host")}/${data.foto}`,
               });
             }
           );

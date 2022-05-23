@@ -3,6 +3,6 @@ const router = express.Router();
 
 const authorize = require("../middleware/authorize");
 
-router.use(require("./pengurus"));
+router.use(require("./admin"));
 
 module.exports = router;

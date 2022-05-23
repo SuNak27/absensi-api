@@ -1,20 +1,14 @@
 const bcrypt = require("bcryptjs");
-const { Pengurus } = require("../../model");
+const { Admin } = require("../../model");
 const Validator = require("fastest-validator");
 const v = new Validator();
 
 module.exports = async (req, res) => {
-  const { username, password, role, nama, foto } = req.body;
+  const { username, password, nama } = req.body;
   const schema = {
     username: "string|required",
     password: "string|required",
-    role: {
-      type: "string",
-      items: "string",
-      enum: ["sysadmin", "admin"]
-    },
     nama: "string|required",
-    foto: "string|required",
   };
 
   const validate = v.validate(req.body, schema);
@@ -25,17 +19,15 @@ module.exports = async (req, res) => {
     });
   }
 
-  await Pengurus.create({
+  await Admin.create({
     username,
     password: bcrypt.hashSync(password, 10),
-    role,
     nama,
-    foto,
   })
     .then((data) => {
       return res.status(201).json({
         status: true,
-        message: "Pengurus berhasil ditambahkan",
+        message: "Admin berhasil ditambahkan",
         data,
       });
     })
