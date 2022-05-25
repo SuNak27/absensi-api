@@ -1,12 +1,24 @@
 const { application } = require("express");
-const { karyawan } = require("../model");
+const { karyawan, unit, jabatan } = require("../model");
 const { sequelize } = require("sequelize");
 
 module.exports = {
   async all(req, res, next) {
     try {
       await karyawan
-        .findAll()
+        .findAll({
+          include: [
+            {
+              model: unit,
+            },
+            {
+              model: jabatan,
+            },
+          ],
+          attributes: {
+            exclude: ["password", "id_unit", "id_jabatan"],
+          },
+        })
         .then((result) => {
           if (result.length > 0) {
             return res.status(200).json({

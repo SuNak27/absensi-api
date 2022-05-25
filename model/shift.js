@@ -2,15 +2,19 @@ module.exports = (sequelize, DataTypes) => {
   const shift = sequelize.define(
     "shift",
     {
-      nama: {
+      kode_shift: {
         type: DataTypes.STRING,
         allowNull: false,
       },
-      jam_awal: {
+      nama_shift: {
+        type: DataTypes.STRING,
+        allowNull: false,
+      },
+      jam_masuk: {
         type: DataTypes.TIME,
         allowNull: false,
       },
-      jam_akhir: {
+      jam_Keluar: {
         type: DataTypes.TIME,
         allowNull: false,
       },

@@ -2,7 +2,7 @@ module.exports = {
   development: {
     username: "root",
     password: null,
-    database: "absensi",
+    database: "grahasehatapp",
     host: "127.0.0.1",
     dialect: "mysql",
     define: {
@@ -15,7 +15,7 @@ module.exports = {
   test: {
     username: "root",
     password: null,
-    database: "absensi",
+    database: "grahasehatapp",
     host: "127.0.0.1",
     dialect: "mysql",
     define: {
@@ -28,7 +28,7 @@ module.exports = {
   production: {
     username: "root",
     password: null,
-    database: "absensi",
+    database: "grahasehatapp",
     host: "127.0.0.1",
     // host: ":8080",
     dialect: "mysql",
