@@ -16,7 +16,7 @@ module.exports = {
             },
           ],
           attributes: {
-            exclude: ["password", "id_unit", "id_jabatan"],
+            exclude: ["sandi", "id_unit", "id_jabatan"],
           },
         })
         .then((result) => {
@@ -51,6 +51,17 @@ module.exports = {
         .findOne({
           where: {
             id: req.params.id,
+          },
+          include: [
+            {
+              model: unit,
+            },
+            {
+              model: jabatan,
+            },
+          ],
+          attributes: {
+            exclude: ["sandi", "id_unit", "id_jabatan"],
           },
         })
         .then((result) => {
@@ -109,12 +120,55 @@ module.exports = {
   },
   async edit(req, res, next) {
     try {
-      const { nama, jabatan } = req.body;
+      const {
+        nik,
+        nama,
+        id_jabatan,
+        id_unit,
+        tanggal_lahir,
+        status_kawin,
+        alamat,
+        gender,
+        pendidikan,
+        agama,
+        telepon,
+        tanggal_mulai_kerja,
+        tanggal_resign,
+        status_aktif,
+        status_kerja,
+        tanggal,
+        tanggal_mulai_kontrak,
+        tanggal_habis_kontrak,
+        lama_kontrak,
+        nama_pengguna,
+        sandi,
+        lastupdate_date,
+      } = req.body;
       await karyawan
         .update(
           {
+            nik,
             nama,
-            jabatan,
+            id_jabatan,
+            id_unit,
+            tanggal_lahir,
+            status_kawin,
+            alamat,
+            gender,
+            pendidikan,
+            agama,
+            telepon,
+            tanggal_mulai_kerja,
+            tanggal_resign,
+            status_aktif,
+            status_kerja,
+            tanggal,
+            tanggal_mulai_kontrak,
+            tanggal_habis_kontrak,
+            lama_kontrak,
+            nama_pengguna,
+            sandi,
+            lastupdate_date,
           },
           { where: { id: req.params.id } }
         )
