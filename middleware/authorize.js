@@ -9,7 +9,7 @@ module.exports = async (req, res, next) => {
     if (err) {
       return res.status(401).json({
         status: false,
-        message: "Test failed, please login again!",
+        message: "Failed to authenticate token",
       });
     } else if (pass) {
       req.admin = pass;
