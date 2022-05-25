@@ -14,7 +14,7 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.TIME,
         allowNull: false,
       },
-      jam_Keluar: {
+      jam_keluar: {
         type: DataTypes.TIME,
         allowNull: false,
       },

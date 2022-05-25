@@ -69,12 +69,13 @@ module.exports = {
   },
   async simpan(req, res, next) {
     try {
-      const { nama, jam_awal, jam_akhir } = req.body;
+      const { kode_shift, nama_shift, jam_masuk, jam_keluar } = req.body;
       await shift
         .create({
-          nama,
-          jam_awal,
-          jam_akhir,
+          kode_shift,
+          nama_shift,
+          jam_masuk,
+          jam_keluar,
         })
         .then((result) => {
           return res.status(201).json({
@@ -98,13 +99,14 @@ module.exports = {
   },
   async edit(req, res, next) {
     try {
-      const { nama, jam_awal, jam_akhir } = req.body;
+      const { kode_shift, nama_shift, jam_masuk, jam_keluar } = req.body;
       await shift
         .update(
           {
-            nama,
-            jam_awal,
-            jam_akhir,
+            kode_shift,
+            nama_shift,
+            jam_masuk,
+            jam_keluar,
           },
           { where: { id: req.params.id } }
         )
