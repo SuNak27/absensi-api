@@ -1,14 +1,13 @@
 const bcrypt = require("bcryptjs");
-const { Admin } = require("../../model");
+const { karyawan } = require("../../model");
 const Validator = require("fastest-validator");
 const v = new Validator();
 
 module.exports = async (req, res) => {
-  const { username, password, nama } = req.body;
+  const { nama_pengguna, sandi } = req.body;
   const schema = {
-    username: "string|required",
-    password: "string|required",
-    nama: "string|required",
+    nama_pengguna: "string|required",
+    sandi: "string|required",
   };
 
   const validate = v.validate(req.body, schema);
@@ -19,15 +18,18 @@ module.exports = async (req, res) => {
     });
   }
 
-  await Admin.create({
-    username,
-    password: bcrypt.hashSync(password, 10),
-    nama,
-  })
+  await karyawan
+    .update(
+      {
+        nama_pengguna,
+        sandi: bcrypt.hashSync(sandi, 10),
+      },
+      { where: { id: req.params.id } }
+    )
     .then((data) => {
       return res.status(201).json({
         status: true,
-        message: "Admin berhasil ditambahkan",
+        message: "karyawan berhasil ditambahkan",
         data,
       });
     })
