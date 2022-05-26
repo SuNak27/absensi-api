@@ -1,5 +1,5 @@
 const { application } = require("express");
-const { jadwal, unit, jabatan, karyawan } = require("../model");
+const { jadwal, unit, shift, jabatan, karyawan } = require("../model");
 const { sequelize } = require("sequelize");
 
 module.exports = {
@@ -57,9 +57,32 @@ module.exports = {
   async cari(req, res, next) {
     try {
       await jadwal
-        .findOne({
+        .findAll({
           where: {
             id_karyawan: req.params.id_karyawan,
+          },
+          include: [
+            {
+              model: karyawan,
+              attributes: ["id", "nama"],
+              include: [
+                {
+                  model: jabatan,
+                  attributes: ["id", "nama_jabatan"],
+                },
+                {
+                  model: unit,
+                  attributes: ["id", "nama_unit"],
+                },
+              ],
+            },
+            {
+              model: shift,
+              attributes: ["id", "nama_shift"],
+            },
+          ],
+          attributes: {
+            exclude: ["id_shift", "id_karyawan"],
           },
         })
         .then((result) => {
