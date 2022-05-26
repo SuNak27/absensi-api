@@ -13,10 +13,20 @@ module.exports = (sequelize, DataTypes) => {
       id_jabatan: {
         type: DataTypes.INTEGER,
         allowNull: false,
+        references: {
+          model: "jabatan",
+          key: "id",
+        },
+        field: "id_jabatan",
       },
       id_unit: {
         type: DataTypes.INTEGER,
         allowNull: false,
+        references: {
+          model: "unit",
+          key: "id",
+        },
+        field: "id_unit",
       },
       tanggal_lahir: {
         type: DataTypes.DATE,
@@ -104,9 +114,11 @@ module.exports = (sequelize, DataTypes) => {
   karyawan.associate = function (models) {
     karyawan.hasOne(models.jabatan, {
       foreignKey: "id",
+      sourceKey: "id_jabatan",
     });
     karyawan.hasOne(models.unit, {
       foreignKey: "id",
+      sourceKey: "id_unit",
     });
   };
   return karyawan;

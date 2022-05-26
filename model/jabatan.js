@@ -12,7 +12,7 @@ module.exports = (sequelize, DataTypes) => {
     }
   );
   jabatan.associate = function (models) {
-    jabatan.hasMany(models.karyawan, {
+    jabatan.belongsTo(models.karyawan, {
       foreignKey: "id",
     });
   };

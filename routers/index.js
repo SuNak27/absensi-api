@@ -7,6 +7,6 @@ router.use(require("./admin"));
 router.use(require("./login_karyawan"));
 router.use(authorize, require("./karyawan"));
 router.use(authorize, require("./shift"));
-router.use(authorize, require("./jadwal_shift"));
+router.use(authorize, require("./jadwal"));
 
 module.exports = router;
