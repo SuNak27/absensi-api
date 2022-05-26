@@ -59,7 +59,7 @@ module.exports = {
       await jadwal
         .findOne({
           where: {
-            id: req.params.id,
+            id_karyawan: req.params.id_karyawan,
           },
         })
         .then((result) => {
