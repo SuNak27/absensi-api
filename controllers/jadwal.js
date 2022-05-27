@@ -78,12 +78,14 @@ module.exports = {
             },
             {
               model: shift,
+              required: true,
               attributes: ["id", "nama_shift"],
             },
           ],
           attributes: {
             exclude: ["id_shift", "id_karyawan"],
           },
+          order: [["tanggal", "ASC"]],
         })
         .then((result) => {
           if (result != 0) {

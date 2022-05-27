@@ -23,5 +23,10 @@ module.exports = (sequelize, DataTypes) => {
       tableName: "shift",
     }
   );
+  shift.associate = function (models) {
+    shift.belongsTo(models.jadwal, {
+      foreignKey: "id_shift",
+    });
+  };
   return shift;
 };

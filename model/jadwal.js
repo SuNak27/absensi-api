@@ -28,8 +28,9 @@ module.exports = (sequelize, DataTypes) => {
     }
   );
   jadwal.associate = function (models) {
-    jadwal.belongsTo(models.shift, {
-      foreignKey: "id_shift",
+    jadwal.hasMany(models.shift, {
+      foreignKey: "id",
+      sourceKey: "id_shift",
     });
     jadwal.belongsTo(models.karyawan, {
       foreignKey: "id_karyawan",
