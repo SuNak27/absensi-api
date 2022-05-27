@@ -24,7 +24,7 @@ module.exports = (sequelize, DataTypes) => {
     }
   );
   shift.associate = function (models) {
-    shift.belongsTo(models.jadwal, {
+    shift.belongsTo(models.detail_jadwal, {
       foreignKey: "id_shift",
     });
   };

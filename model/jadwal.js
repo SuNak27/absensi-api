@@ -10,14 +10,6 @@ module.exports = (sequelize, DataTypes) => {
           key: "id",
         },
       },
-      id_shift: {
-        type: DataTypes.INTEGER,
-        allowNull: false,
-        references: {
-          model: "shift",
-          key: "id",
-        },
-      },
       tanggal: {
         type: DataTypes.DATE,
         allowNull: false,
@@ -28,12 +20,13 @@ module.exports = (sequelize, DataTypes) => {
     }
   );
   jadwal.associate = function (models) {
-    jadwal.hasMany(models.shift, {
-      foreignKey: "id",
-      sourceKey: "id_shift",
+    jadwal.hasMany(models.detail_jadwal, {
+      foreignKey: "id_jadwal",
+      sourceKey: "id",
     });
-    jadwal.belongsTo(models.karyawan, {
-      foreignKey: "id_karyawan",
+    jadwal.hasOne(models.karyawan, {
+      foreignKey: "id",
+      sourceKey: "id_karyawan",
     });
   };
   return jadwal;

@@ -120,6 +120,9 @@ module.exports = (sequelize, DataTypes) => {
       foreignKey: "id",
       sourceKey: "id_unit",
     });
+    karyawan.belongsTo(models.jadwal, {
+      foreignKey: "id_karyawan",
+    });
   };
   return karyawan;
 };

@@ -1,5 +1,12 @@
 const { application } = require("express");
-const { jadwal, unit, shift, jabatan, karyawan } = require("../model");
+const {
+  jadwal,
+  unit,
+  shift,
+  jabatan,
+  karyawan,
+  detail_jadwal,
+} = require("../model");
 const { sequelize } = require("sequelize");
 
 module.exports = {
@@ -77,13 +84,20 @@ module.exports = {
               ],
             },
             {
-              model: shift,
-              required: true,
-              attributes: ["id", "nama_shift"],
+              model: detail_jadwal,
+              include: [
+                {
+                  model: shift,
+                  attributes: ["id", "nama_shift"],
+                },
+              ],
+              attributes: {
+                exclude: ["id_jadwal", "id"],
+              },
             },
           ],
           attributes: {
-            exclude: ["id_shift", "id_karyawan"],
+            exclude: ["id_karyawan"],
           },
           order: [["tanggal", "ASC"]],
         })
