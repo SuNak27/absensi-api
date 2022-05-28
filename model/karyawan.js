@@ -121,7 +121,7 @@ module.exports = (sequelize, DataTypes) => {
       sourceKey: "id_unit",
     });
     karyawan.belongsTo(models.jadwal, {
-      foreignKey: "id_karyawan",
+      foreignKey: "id",
     });
   };
   return karyawan;

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: May 27, 2022 at 07:42 AM
+-- Generation Time: May 27, 2022 at 02:35 PM
 -- Server version: 8.0.21
 -- PHP Version: 7.4.9
 
@@ -34,7 +34,7 @@ CREATE TABLE IF NOT EXISTS `admin` (
   `password` varchar(100) NOT NULL,
   `nama` varchar(20) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `admin`
@@ -56,7 +56,7 @@ CREATE TABLE IF NOT EXISTS `aturan_lokasi` (
   `longitud` text NOT NULL,
   `status` enum('0','1') NOT NULL,
   PRIMARY KEY (`id_aturan_lokasi`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -72,7 +72,29 @@ CREATE TABLE IF NOT EXISTS `aturan_presensi` (
   `terlambat` varchar(2) NOT NULL,
   `status` enum('y','t') NOT NULL,
   PRIMARY KEY (`id_aturan`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `detail_jadwal`
+--
+
+DROP TABLE IF EXISTS `detail_jadwal`;
+CREATE TABLE IF NOT EXISTS `detail_jadwal` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `id_jadwal` int NOT NULL,
+  `id_shift` int NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `detail_jadwal`
+--
+
+INSERT INTO `detail_jadwal` (`id`, `id_jadwal`, `id_shift`) VALUES
+(1, 1, 1),
+(2, 1, 2);
 
 -- --------------------------------------------------------
 
@@ -85,7 +107,7 @@ CREATE TABLE IF NOT EXISTS `jabatan` (
   `id` tinyint NOT NULL AUTO_INCREMENT,
   `nama_jabatan` varchar(40) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `jabatan`
@@ -104,79 +126,17 @@ DROP TABLE IF EXISTS `jadwal`;
 CREATE TABLE IF NOT EXISTS `jadwal` (
   `id` int NOT NULL AUTO_INCREMENT,
   `id_karyawan` int NOT NULL,
-  `id_shift` int NOT NULL,
   `tanggal` date NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=64 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `jadwal`
 --
 
-INSERT INTO `jadwal` (`id`, `id_karyawan`, `id_shift`, `tanggal`) VALUES
-(1, 1, 1, '2022-05-31'),
-(2, 1, 1, '2022-05-30'),
-(3, 1, 1, '2022-05-29'),
-(4, 1, 1, '2022-05-28'),
-(5, 1, 1, '2022-05-27'),
-(6, 1, 1, '2022-05-26'),
-(7, 1, 1, '2022-05-25'),
-(8, 1, 1, '2022-05-24'),
-(9, 1, 1, '2022-05-23'),
-(10, 1, 1, '2022-05-22'),
-(11, 1, 1, '2022-05-21'),
-(12, 1, 1, '2022-05-20'),
-(13, 1, 1, '2022-05-19'),
-(14, 1, 1, '2022-05-18'),
-(15, 1, 1, '2022-05-17'),
-(16, 1, 1, '2022-05-16'),
-(17, 1, 1, '2022-05-15'),
-(18, 1, 1, '2022-05-14'),
-(19, 1, 1, '2022-05-13'),
-(20, 1, 1, '2022-05-12'),
-(21, 1, 1, '2022-05-11'),
-(22, 1, 1, '2022-05-10'),
-(23, 1, 1, '2022-05-09'),
-(24, 1, 1, '2022-05-08'),
-(25, 1, 1, '2022-05-07'),
-(26, 1, 1, '2022-05-06'),
-(27, 1, 1, '2022-05-05'),
-(28, 1, 1, '2022-05-04'),
-(29, 1, 1, '2022-05-03'),
-(30, 1, 1, '2022-05-02'),
-(31, 1, 1, '2022-05-01'),
-(32, 2, 1, '2022-05-31'),
-(33, 2, 0, '2022-05-30'),
-(34, 2, 0, '2022-05-29'),
-(35, 2, 0, '2022-05-28'),
-(36, 2, 0, '2022-05-27'),
-(37, 2, 0, '2022-05-26'),
-(38, 2, 0, '2022-05-25'),
-(39, 2, 0, '2022-05-24'),
-(40, 2, 0, '2022-05-23'),
-(41, 2, 0, '2022-05-22'),
-(42, 2, 0, '2022-05-21'),
-(43, 2, 0, '2022-05-20'),
-(44, 2, 0, '2022-05-19'),
-(45, 2, 0, '2022-05-18'),
-(46, 2, 0, '2022-05-17'),
-(47, 2, 0, '2022-05-16'),
-(48, 2, 0, '2022-05-15'),
-(49, 2, 0, '2022-05-14'),
-(50, 2, 0, '2022-05-13'),
-(51, 2, 0, '2022-05-12'),
-(52, 2, 0, '2022-05-11'),
-(53, 2, 0, '2022-05-10'),
-(54, 2, 0, '2022-05-09'),
-(55, 2, 0, '2022-05-08'),
-(56, 2, 0, '2022-05-07'),
-(57, 2, 0, '2022-05-06'),
-(58, 2, 0, '2022-05-05'),
-(59, 2, 0, '2022-05-04'),
-(60, 2, 0, '2022-05-03'),
-(61, 2, 0, '2022-05-02'),
-(62, 2, 0, '2022-05-01'),
-(63, 1, 2, '2022-05-01');
+INSERT INTO `jadwal` (`id`, `id_karyawan`, `tanggal`) VALUES
+(1, 1, '2022-05-25'),
+(2, 1, '2022-05-26');
 
 -- --------------------------------------------------------
 
@@ -207,12 +167,12 @@ CREATE TABLE IF NOT EXISTS `karyawan` (
   `tanggal_habis_kontrak` date DEFAULT NULL,
   `lama_kontrak` smallint DEFAULT NULL,
   `nama_pengguna` varchar(10) NOT NULL,
-  `sandi` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `sandi` varchar(100) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL,
   `lastupdate_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`),
   KEY `jabatan` (`id_jabatan`),
   KEY `unit` (`id_unit`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `karyawan`
@@ -237,7 +197,7 @@ CREATE TABLE IF NOT EXISTS `presensi` (
   `status` enum('Hadir','Terlambat') NOT NULL,
   `keterangan` text,
   PRIMARY KEY (`id_presensi`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -253,7 +213,7 @@ CREATE TABLE IF NOT EXISTS `shift` (
   `jam_masuk` time NOT NULL,
   `jam_keluar` time NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `shift`
@@ -279,7 +239,7 @@ CREATE TABLE IF NOT EXISTS `unit` (
   `id` smallint NOT NULL AUTO_INCREMENT,
   `nama_unit` varchar(40) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `unit`

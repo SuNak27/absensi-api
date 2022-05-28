@@ -10,8 +10,20 @@ module.exports = (sequelize, DataTypes) => {
           key: "id",
         },
       },
+      id_tahun: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+        references: {
+          model: "tahun",
+          key: "id",
+        },
+      },
       tanggal: {
         type: DataTypes.DATE,
+        allowNull: false,
+      },
+      bulan: {
+        type: DataTypes.STRING,
         allowNull: false,
       },
     },
@@ -27,6 +39,10 @@ module.exports = (sequelize, DataTypes) => {
     jadwal.hasOne(models.karyawan, {
       foreignKey: "id",
       sourceKey: "id_karyawan",
+    });
+    jadwal.hasOne(models.setting_tahun, {
+      foreignKey: "id",
+      sourceKey: "id_tahun",
     });
   };
   return jadwal;
