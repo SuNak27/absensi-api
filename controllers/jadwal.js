@@ -38,7 +38,6 @@ module.exports = {
           attributes: {
             exclude: ["id_karyawan", "id_tahun"],
           },
-          group: ["bulan"],
         })
         .then((result) => {
           if (result.length > 0) {
