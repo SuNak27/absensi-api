@@ -36,7 +36,7 @@ module.exports = {
             },
           ],
           attributes: {
-            exclude: ["id_karyawan"],
+            exclude: ["id_karyawan", "id_tahun"],
           },
           group: ["bulan"],
         })
@@ -89,6 +89,10 @@ module.exports = {
               ],
             },
             {
+              model: setting_tahun,
+              attributes: ["tahun", "status"],
+            },
+            {
               model: detail_jadwal,
               include: [
                 {
@@ -97,7 +101,7 @@ module.exports = {
                 },
               ],
               attributes: {
-                exclude: ["id_jadwal", "id"],
+                exclude: ["id_jadwal", "id", "id_tahun"],
               },
             },
           ],
@@ -157,6 +161,10 @@ module.exports = {
               ],
             },
             {
+              model: setting_tahun,
+              attributes: ["tahun", "status"],
+            },
+            {
               model: detail_jadwal,
               include: [
                 {
@@ -170,7 +178,7 @@ module.exports = {
             },
           ],
           attributes: {
-            exclude: ["id_karyawan", "bulan", "karyawan"],
+            exclude: ["id_karyawan", "bulan", "karyawan", "id_tahun"],
           },
           order: [["tanggal", "ASC"]],
         })
