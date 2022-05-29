@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: May 28, 2022 at 06:48 PM
+-- Generation Time: May 29, 2022 at 05:40 AM
 -- Server version: 8.0.21
 -- PHP Version: 7.4.9
 
@@ -100,9 +100,7 @@ INSERT INTO `detail_jadwal` (`id`, `id_jadwal`, `id_shift`) VALUES
 (4, 4, 2),
 (5, 5, 2),
 (6, 6, 2),
-(7, 1, 2),
-(8, 2, 2),
-(9, 3, 2);
+(7, 1, 2);
 
 -- --------------------------------------------------------
 
